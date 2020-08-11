@@ -9,6 +9,7 @@ __license__ = "MIT"
 
 import argparse
 import praw
+CLI_USAGE = False
 
 
 def search_and_get_pasta_if_exists(subreddit, query):
@@ -25,22 +26,25 @@ def get_copypasta(query, print_pasta=False):
     pasta = search_and_get_pasta_if_exists(subreddit, query)
     if print_pasta:
         print(pasta)
-    return pasta
+    elif not print_pasta and not CLI_USAGE:
+        return pasta
 
 
 def main():
+    global CLI_USAGE
+    CLI_USAGE = True
     parser = argparse.ArgumentParser()
 
     parser.add_argument("query", help="search term")
-    parser.add_argument("-s", "--show", action="store_true", default=False,
-                        help="print output to stdout")
+    parser.add_argument("--hide", action="store_true", default=False,
+                        help="do not print output to stdout")
     parser.add_argument(
         "--version",
         action="version",
         version="%(prog)s (version {version})".format(version=__version__))
 
     args = parser.parse_args()
-    return get_copypasta(args.query, args.show)
+    return get_copypasta(args.query, print_pasta=(not args.hide))
 
 
 if __name__ == "__main__":
