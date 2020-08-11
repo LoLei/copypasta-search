@@ -4,7 +4,7 @@ Get copypasta based on query
 """
 
 __author__ = "Lorenz Leitner"
-__version__ = "0.9.1"
+__version__ = "1.0"
 __license__ = "MIT"
 
 import argparse
@@ -28,11 +28,7 @@ def get_copypasta(query, print_pasta=False):
     return pasta
 
 
-def main(query, print_pasta=False):
-    return get_copypasta(query, print_pasta)
-
-
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("query", help="search term")
@@ -44,4 +40,8 @@ if __name__ == "__main__":
         version="%(prog)s (version {version})".format(version=__version__))
 
     args = parser.parse_args()
-    main(args.query, args.show)
+    return get_copypasta(args.query, args.show)
+
+
+if __name__ == "__main__":
+    main()
