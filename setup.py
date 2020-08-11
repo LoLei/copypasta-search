@@ -22,6 +22,7 @@ setuptools.setup(
         "copypasta-search=copypasta_search:main"]},
     python_requires=">=3.6",
     install_requires=[
-        'praw'
+        'praw',
+        'pyperclip'
     ],
 )
