@@ -11,7 +11,7 @@ pip install copypasta-search
 ### Command line
 ```
 $ copypasta-search interject --help
-usage: copypasta-search [-h] [--hide] [--version] query
+usage: copypasta-search [-h] [--hide] [-c] [--version] query
 
 positional arguments:
   query       search term
@@ -19,6 +19,7 @@ positional arguments:
 optional arguments:
   -h, --help  show this help message and exit
   --hide      do not print output to stdout
+  -c, --copy  copy pasta to clipboard
   --version   show program's version number and exit
 ```
 
