@@ -10,15 +10,15 @@ pip install copypasta-search
 ## Usage
 ### Command line
 ```
-$ python copypasta-search --help
-usage: copypasta-search [-h] [-s] [--version] query
+$ copypasta-search interject --help
+usage: copypasta-search [-h] [--hide] [--version] query
 
 positional arguments:
   query       search term
 
 optional arguments:
   -h, --help  show this help message and exit
-  -s, --show  print output to stdout
+  --hide      do not print output to stdout
   --version   show program's version number and exit
 ```
 
