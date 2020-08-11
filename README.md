@@ -29,7 +29,7 @@ import copypasta_search as cps
 
 # To store the pasta:
 pasta = cps.get_copypasta('interject')
-print(pasta)
+# pasta == 'I'd just like to interject for a moment…'
 
 # Or for direct output to stdout:
 cps.get_copypasta('interject', print_pasta=True)
