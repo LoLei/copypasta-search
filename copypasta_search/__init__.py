@@ -4,7 +4,7 @@ Get copypasta based on query
 """
 
 __author__ = "Lorenz Leitner"
-__version__ = "1.0"
+__version__ = "1.0.1"
 __license__ = "MIT"
 
 import argparse
