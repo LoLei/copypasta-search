@@ -4,7 +4,7 @@ Get copypasta based on query
 """
 
 __author__ = "Lorenz Leitner"
-__version__ = "1.0.1"
+__version__ = "1.1"
 __license__ = "MIT"
 
 import argparse
@@ -14,11 +14,12 @@ CLI_USAGE = False
 
 
 def search_and_get_pasta_if_exists(subreddit, query):
+    # Returns ListingGenerator - can't check if empty
     submissions = subreddit.search(query, limit=1)
-    if submissions:
+    try:
         return list(submissions)[0].selftext
-    else:
-        return False
+    except IndexError:
+        return 'Nothing found'
 
 
 def get_copypasta(query, print_pasta=False, copy_to_clipboard=False):
