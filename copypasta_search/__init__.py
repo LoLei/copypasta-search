@@ -4,7 +4,7 @@ Get copypasta based on query
 """
 
 __author__ = "Lorenz Leitner"
-__version__ = "1.1"
+__version__ = "1.2"
 __license__ = "MIT"
 
 import argparse
@@ -26,6 +26,9 @@ def get_copypasta(query, print_pasta=False, copy_to_clipboard=False):
     reddit = praw.Reddit()
     subreddit = reddit.subreddit('copypasta')
     pasta = search_and_get_pasta_if_exists(subreddit, query)
+    # PRAW might also return an empty string for some reason
+    if not pasta:
+        pasta = 'Nothing found'
     if copy_to_clipboard:
         pyperclip.copy(pasta)
     if print_pasta:

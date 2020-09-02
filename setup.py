@@ -5,7 +5,7 @@ LONG_DESC = open('README.md').read()
 
 setuptools.setup(
     name="copypasta-search",
-    version="1.1",
+    version="1.2",
     author="Lorenz Leitner",
     author_email="lrnz.ltnr@gmail.com",
     description="Python Copypasta Search using Reddit",
