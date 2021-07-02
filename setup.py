@@ -5,7 +5,7 @@ LONG_DESC = open('README.md').read()
 
 setuptools.setup(
     name="copypasta-search",
-    version="1.2",
+    version="1.3",
     author="Lorenz Leitner",
     author_email="lrnz.ltnr@gmail.com",
     description="Python Copypasta Search using Reddit",
@@ -22,7 +22,8 @@ setuptools.setup(
         "copypasta-search=copypasta_search:main"]},
     python_requires=">=3.5",
     install_requires=[
-        'praw',
-        'pyperclip'
+        'praw==7.3.0',
+        'pyperclip==1.8.2'
     ],
 )
+

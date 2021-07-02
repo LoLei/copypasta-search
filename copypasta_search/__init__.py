@@ -4,28 +4,34 @@ Get copypasta based on query
 """
 
 __author__ = "Lorenz Leitner"
-__version__ = "1.2"
+__version__ = "1.3"
 __license__ = "MIT"
 
 import argparse
+from typing import Tuple, Optional
+
 import praw
 import pyperclip
+
 CLI_USAGE = False
 
 
-def search_and_get_pasta_if_exists(subreddit, query):
+def search_and_get_pasta_if_exists(subreddit, query) -> Tuple[str, Optional[str]]:
     # Returns ListingGenerator - can't check if empty
     submissions = subreddit.search(query, limit=1)
     try:
-        return list(submissions)[0].selftext
+        found_submission = list(submissions)[0]
+        text = found_submission.selftext
+        url = f"https://redd.it/{found_submission.id}"
+        return text, url
     except IndexError:
-        return 'Nothing found'
+        return 'Nothing found', None
 
 
-def get_copypasta(query, print_pasta=False, copy_to_clipboard=False):
+def get_copypasta(query, print_pasta=False, copy_to_clipboard=False) -> Optional[Tuple[str, Optional[str]]]:
     reddit = praw.Reddit()
     subreddit = reddit.subreddit('copypasta')
-    pasta = search_and_get_pasta_if_exists(subreddit, query)
+    pasta, url = search_and_get_pasta_if_exists(subreddit, query)
     # PRAW might also return an empty string for some reason
     if not pasta:
         pasta = 'Nothing found'
@@ -33,8 +39,9 @@ def get_copypasta(query, print_pasta=False, copy_to_clipboard=False):
         pyperclip.copy(pasta)
     if print_pasta:
         print(pasta)
+        print(url if url is not None else '')
     elif not print_pasta and not CLI_USAGE:
-        return pasta
+        return pasta, url
 
 
 def main():
